@@ -5,50 +5,34 @@ const ProfileSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'user',
   },
-  company: {
-    type: String,
-  },
-  website: {
+  favoriteSneaker: {
     type: String,
   },
   location: {
     type: String,
   },
-  status: {
-    type: String,
-    required: true,
-  },
-  skills: {
-    type: [String],
-    required: true,
-  },
   bio: {
     type: String,
   },
-  githubusername: {
-    type: String,
-  },
-  experience: [
+  sneaker: [
     {
-      title: {
+      brand: {
         type: String,
         required: true,
       },
-      company: {
+      model: {
         type: String,
         required: true,
       },
-      location: {
+      size: {
         type: String,
-      },
-      from: {
-        type: Date,
         required: true,
       },
-      to: {
-        type: Date,
+      condition: {
+        type: String,
+        required: true,
       },
-      current: {
+      tradeAvailable: {
         type: Boolean,
         default: false,
       },
@@ -57,36 +41,7 @@ const ProfileSchema = new mongoose.Schema({
       },
     },
   ],
-  education: [
-    {
-      school: {
-        type: String,
-        required: true,
-      },
-      degree: {
-        type: String,
-        required: true,
-      },
-      fieldofstudy: {
-        type: String,
-        required: true,
-      },
-      from: {
-        type: Date,
-        required: true,
-      },
-      to: {
-        type: Date,
-      },
-      current: {
-        type: Boolean,
-        default: false,
-      },
-      description: {
-        type: String,
-      },
-    },
-  ],
+
   social: {
     youtube: {
       type: String,
