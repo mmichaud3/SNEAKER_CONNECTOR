@@ -67,7 +67,7 @@ const AddSneaker = ({ addSneaker, history }) => {
         <div className='form-group'>
           <input
             type='text'
-            placeholder='Sneaker Size'
+            placeholder='* Sneaker Size'
             name='size'
             value={size}
             onChange={(e) => onChange(e)}
@@ -75,14 +75,20 @@ const AddSneaker = ({ addSneaker, history }) => {
           />
         </div>
         <div className='form-group'>
-          <input
-            type='text'
-            placeholder='Sneaker Condition'
+          <select
             name='condition'
             value={condition}
             onChange={(e) => onChange(e)}
             required
-          />
+          >
+            <option value='0'>* Select Sneaker Condition</option>
+            <option value='Brand New (In Box)'>Brand New (In Box)</option>
+            <option value='Brand New (No Box)'>Brand New (No Box)</option>
+            <option value='Like New'>Like New</option>
+            <option value='Lightly Used'>Lightly Used</option>
+            <option value='Used'>Used</option>
+            <option value='Well Worn'>Well Worn</option>
+          </select>
         </div>
         <div className='form-group'>
           <p>
