@@ -22,7 +22,7 @@ const ProfileSneaker = ({
     </p>
     <p>
       <strong>Available for trade: </strong>
-      {tradeAvailable}
+      {tradeAvailable === true ? 'Yes' : 'No'}
     </p>
   </div>
 );

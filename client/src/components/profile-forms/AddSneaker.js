@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { addSneaker } from '../../actions/profile';
 
+const fileInput = React.createRef();
+
 const AddSneaker = ({ addSneaker, history }) => {
   const [formData, setFormData] = useState({
     brand: '',
@@ -11,6 +13,8 @@ const AddSneaker = ({ addSneaker, history }) => {
     size: '',
     condition: '',
     tradeAvailable: false,
+    description: '',
+    image: '',
   });
 
   const [toDateDisabled, toggleDisabled] = useState(false);
@@ -22,6 +26,7 @@ const AddSneaker = ({ addSneaker, history }) => {
     condition,
     description,
     tradeAvailable,
+    image,
   } = formData;
 
   const onChange = (e) =>
@@ -36,6 +41,7 @@ const AddSneaker = ({ addSneaker, history }) => {
         onSubmit={(e) => {
           e.preventDefault();
           addSneaker(formData, history);
+          alert(`Selected file - ${fileInput.current.files[0].name}`);
         }}
       >
         <div className='form-group'>
@@ -86,7 +92,7 @@ const AddSneaker = ({ addSneaker, history }) => {
               checked={tradeAvailable}
               value={tradeAvailable}
               onChange={(e) => {
-                setFormData({ ...formData, tradeAvailable: !tradeAvailable });
+                setFormData({ ...formData, tradeAvailable: true });
                 // toggleDisabled(!toDateDisabled);
               }}
             />{' '}
@@ -102,6 +108,19 @@ const AddSneaker = ({ addSneaker, history }) => {
             value={description}
             onChange={(e) => onChange(e)}
           ></textarea>
+        </div>
+        <div className='form-group'>
+          <p>
+            Add Image:{'   '}
+            <input
+              type='file'
+              ref={fileInput}
+              name='image'
+              value={image}
+              onChange={(e) => onChange(e)}
+              required
+            />
+          </p>
         </div>
         <input type='submit' className='btn btn-primary my-1' />
         <Link className='btn btn-light my-1' to='dashboard'>

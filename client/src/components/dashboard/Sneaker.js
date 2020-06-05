@@ -12,6 +12,15 @@ const Sneaker = ({ sneaker, deleteSneaker }) => {
       <td>{item.size}</td>
       <td>{item.condition}</td>
       <td>
+        {item.image}
+        {/* <Fragment>
+          <a target='_blank' href='{item.image}'>
+            <img className='profile-edu' src={item.image} alt='Sneakers' />
+          </a>
+        </Fragment> */}
+      </td>
+
+      <td>
         <button
           onClick={() => deleteSneaker(item._id)}
           className='btn btn-danger'
@@ -31,6 +40,7 @@ const Sneaker = ({ sneaker, deleteSneaker }) => {
             <th className='hide-sm'>Model</th>
             <th className='hide-sm'>Size</th>
             <th className='hide-sm'>Condition</th>
+            <th className='hide-sm sneaker img'>Image</th>
           </tr>
         </thead>
         <tbody>{sneakers}</tbody>

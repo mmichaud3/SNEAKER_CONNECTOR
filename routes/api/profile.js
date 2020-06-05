@@ -242,6 +242,7 @@ router.put(
       check('model', 'Model is required').not().isEmpty(),
       check('size', 'Size is required').not().isEmpty(),
       check('condition', 'Condition is required').not().isEmpty(),
+      check('image', 'At least one image is required').not().isEmpty(),
     ],
   ],
   async (req, res) => {
@@ -257,6 +258,7 @@ router.put(
       condition,
       description,
       tradeAvailable,
+      image,
     } = req.body;
 
     const newSnk = {
@@ -266,6 +268,7 @@ router.put(
       condition,
       tradeAvailable,
       description,
+      image,
     };
 
     try {
@@ -283,8 +286,8 @@ router.put(
   }
 );
 
-// @route  DELETE api/profile/education/:edu_id
-// @desc   Delete education from profile
+// @route  DELETE api/profile/sneaker/:snk_id
+// @desc   Delete sneaker from profile
 // @access Private
 router.delete('/sneaker/:snk_id', auth, async (req, res) => {
   try {

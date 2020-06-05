@@ -366,8 +366,7 @@ button {
   grid-template-areas:
     'top top'
     'about about'
-    'exp edu'
-    'github github';
+    'edu edu';
   grid-gap: 1rem;
 }
 
@@ -405,12 +404,28 @@ button {
   text-align: center;
 }
 
-.profile-exp {
+/* .profile-exp {
   grid-area: exp;
-}
+
+} */
 
 .profile-edu {
   grid-area: edu;
+  /* display: flex; */
+}
+
+.profile-edu img {
+  border: 1px solid #ddd; /* Gray border */
+  border-radius: 4px; /* Rounded border */
+  padding: 5px; /* Some padding */
+  width: 150px; /* Set a small width */
+}
+
+.sneaker img {
+  border: 1px solid #ddd; /* Gray border */
+  border-radius: 4px; /* Rounded border */
+  padding: 5px; /* Some padding */
+  width: 150px; /* Set a small width */
 }
 
 .profile-exp h2,
@@ -433,24 +448,6 @@ button {
 .profile-exp p,
 .profile-edu p {
   margin: 0.5rem 0;
-}
-
-.profile-github {
-  grid-area: github;
-}
-
-.profile-github .repo {
-  display: flex;
-}
-
-.profile-github .repo > div:first-child {
-  flex: 7;
-  flex-basis: 70%;
-}
-
-.profile-github > div:last-child {
-  flex: 3;
-  flex-basis: 20%;
 }
 
 /* Posts Page */

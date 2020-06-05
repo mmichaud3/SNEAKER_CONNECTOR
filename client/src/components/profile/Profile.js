@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import Spinner from '../layout/Spinner';
 import ProfileTop from './ProfileTop';
 import ProfileAbout from './ProfileAbout';
+import ProfileSneaker from './ProfileSneaker';
 import { getProfileById } from '../../actions/profile';
 
 const Profile = ({ getProfileById, profile: { profile }, auth, match }) => {
@@ -31,6 +32,18 @@ const Profile = ({ getProfileById, profile: { profile }, auth, match }) => {
           <div className='profile-grid my-1'>
             <ProfileTop profile={profile} />
             <ProfileAbout profile={profile} />
+            <div className='profile-edu bg-white p-2'>
+              <h2 className='text-primary'>Sneakers</h2>
+              {profile.sneaker.length > 0 ? (
+                <Fragment>
+                  {profile.sneaker.map((sneaker) => (
+                    <ProfileSneaker key={sneaker._id} sneaker={sneaker} />
+                  ))}
+                </Fragment>
+              ) : (
+                <h4>No Sneaker Collection</h4>
+              )}
+            </div>
           </div>
         </Fragment>
       )}
