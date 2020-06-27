@@ -7,6 +7,8 @@ import ProfileTop from './ProfileTop';
 import ProfileAbout from './ProfileAbout';
 import ProfileSneaker from './ProfileSneaker';
 import { getProfileById } from '../../actions/profile';
+import { Container, Row, Col } from 'react-bootstrap';
+import './profile.css';
 
 const Profile = ({ getProfileById, profile: { profile }, auth, match }) => {
   useEffect(() => {
@@ -32,19 +34,22 @@ const Profile = ({ getProfileById, profile: { profile }, auth, match }) => {
           <div className='profile-grid my-1'>
             <ProfileTop profile={profile} />
             <ProfileAbout profile={profile} />
-            <div className='profile-edu bg-white p-2'>
-              <h2 className='text-primary'>Sneakers</h2>
-              {profile.sneaker.length > 0 ? (
-                <Fragment>
-                  {profile.sneaker.map((sneaker) => (
-                    <ProfileSneaker key={sneaker._id} sneaker={sneaker} />
-                  ))}
-                </Fragment>
-              ) : (
-                <h4>No Sneaker Collection</h4>
-              )}
-            </div>
           </div>
+
+          <Container fluid className='cardlist'>
+            <h2 className='text-dark'>Sneakers</h2>
+            {profile.sneaker.length > 0 ? (
+              <Row>
+                {profile.sneaker.map((sneaker) => (
+                  <Col xs={12} sm={6} md={6} lg={4} className='mt-4'>
+                    <ProfileSneaker key={sneaker._id} sneaker={sneaker} />
+                  </Col>
+                ))}
+              </Row>
+            ) : (
+              <h4>No Sneaker Collection</h4>
+            )}
+          </Container>
         </Fragment>
       )}
     </Fragment>

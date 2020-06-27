@@ -14,7 +14,7 @@
 }
 
 body {
-  font-family: 'Raleway', sans-serif;
+  font-family: 'Martel Sans', serif;
   font-size: 1rem;
   line-height: 1.6;
   background-color: #fff;
@@ -310,6 +310,7 @@ button {
   top: 0;
   border-bottom: solid 1px var(--primary-color);
   opacity: 0.9;
+  font-family: 'Righteous', cursive;
 }
 
 .navbar ul {
@@ -371,12 +372,19 @@ button {
 }
 
 .profile-top {
+  color: white;
   grid-area: top;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
+  border-radius: 5px;
+  background-color: #17a2b8;
+}
+
+.profile-top > h1 {
+  font-family: 'Righteous', cursive;
 }
 
 .profile-top img {
@@ -395,6 +403,7 @@ button {
 .profile-about {
   grid-area: about;
   text-align: center;
+  opacity: 0.9;
 }
 
 .profile-about .skills {

@@ -1,0 +1,23 @@
+.card {
+  border: secondary;
+  width: 18rem;
+  -webkit-box-shadow: 0px 8px 10px 4px rgba(106, 105, 105, 0.44);
+  -moz-box-shadow: 0px 8px 10px 4px rgba(106, 105, 105, 0.44);
+  box-shadow: 0px 8px 10px 4px rgba(106, 105, 105, 0.44);
+  overflow: hidden;
+}
+.title {
+  text-align: center;
+  text-decoration: underline;
+  font-family: 'Segoe Pro';
+  font-weight: bold;
+}
+
+.card-img-top:hover {
+  transform: scale(1.1);
+  transition: transform 6s cubic-bezier(0.25, 0.45, 0.45, 0.95);
+  opacity: 0.9;
+}
+.cardlist {
+  padding-top: 20px;
+}

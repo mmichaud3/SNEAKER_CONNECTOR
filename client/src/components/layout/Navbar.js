@@ -43,10 +43,10 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
   );
 
   return (
-    <nav className='navbar bg-dark'>
+    <nav className='navbar bg-dark '>
       <h1>
         <Link to='/'>
-          <i className='far fa-dizzy'></i> Sneaker Connector
+          <i className='far fa-dizzy'></i> Eclectic Soles
         </Link>
       </h1>
       {!loading && (

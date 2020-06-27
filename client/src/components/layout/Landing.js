@@ -12,7 +12,7 @@ const Landing = ({ isAuthenticated }) => {
     <section className='landing'>
       <div className='dark-overlay'>
         <div className='landing-inner'>
-          <h1 className='x-large'>Sneaker Connector</h1>
+          <h1 className='x-large'>Eclectic Soles</h1>
           <p className='lead'>
             Create a profile to start connecting and trading with other
             collectors

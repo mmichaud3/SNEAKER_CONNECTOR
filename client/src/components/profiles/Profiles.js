@@ -15,7 +15,7 @@ const Profiles = ({ getProfiles, profile: { profiles, loading } }) => {
         <Spinner />
       ) : (
         <Fragment>
-          <h1 className='large text-primary'>Collectors</h1>
+          <h1 className='large text-dark'>Collectors</h1>
           <p className='lead'>
             <i className='fas fa-dizzy'></i> Browse and connect with collectors
           </p>
