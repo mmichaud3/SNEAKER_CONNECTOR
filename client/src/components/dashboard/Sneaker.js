@@ -12,7 +12,7 @@ const Sneaker = ({ sneaker, deleteSneaker }) => {
       <td>{item.size}</td>
       <td>{item.condition}</td>
       <td>
-        {item.image}
+        {item.images}
         {/* <Fragment>
           <a target='_blank' href='{item.image}'>
             <img className='profile-edu' src={item.image} alt='Sneakers' />

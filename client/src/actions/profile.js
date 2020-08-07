@@ -157,7 +157,12 @@ export const addSneaker = (formData, history) => async (dispatch) => {
       },
     };
 
-    const res = await axios.put('/api/profile/sneaker', formData, config);
+    const res = await axios.put(
+      '/api/profile/sneaker',
+      formData,
+
+      config
+    );
 
     dispatch({
       type: UPDATE_PROFILE,

@@ -1,12 +1,16 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import { Link, withRouter } from 'react-router-dom';
+import { CloudinaryContext, Image } from 'cloudinary-react';
+import axios from 'axios';
+import ImageUpload from '../image-upload/ImageUpload';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { addSneaker } from '../../actions/profile';
+import { fetchPhotos, openUploadWidget } from '../../CloudinaryService';
 
-const fileInput = React.createRef();
+// const fileInput = React.createRef();
 
-const AddSneaker = ({ addSneaker, history }) => {
+const AddSneaker = ({ addSneaker, binaryStr, history }) => {
   const [formData, setFormData] = useState({
     brand: '',
     model: '',
@@ -16,6 +20,17 @@ const AddSneaker = ({ addSneaker, history }) => {
     description: '',
     image: '',
   });
+
+  // const [files, setFiles] = useState([]);
+  // const onDrop = (acceptedFiles) => {
+  //   setFiles(
+  //     acceptedFiles.map((file) =>
+  //       Object.assign(file, {
+  //         preview: URL.createObjectURL(file),
+  //       })
+  //     )
+  //   );
+  // };
 
   const [toDateDisabled, toggleDisabled] = useState(false);
 
@@ -29,8 +44,55 @@ const AddSneaker = ({ addSneaker, history }) => {
     image,
   } = formData;
 
-  const onChange = (e) =>
+  const onChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  // const upload = () => {
+  //   const uploadURL = 'https://api.cloudinary.com/v1_1/dcmlzd9bi/image/upload';
+  //   const uploadPreset = 'liifuOii';
+
+  //   files.forEach((file) => {
+  //     const formData = new FormData();
+  //     formData.append('file', file);
+  //     formData.append('upload_preset', uploadPreset);
+  //     axios({
+  //       url: uploadURL,
+  //       method: 'POST',
+  //       body: formData,
+  //       // headers: {
+  //       //   'Content-Type': 'application/x-www-form-urlencoded',
+  //       // },
+  //       data: formData,
+  //     })
+  //       .then((res) => console.log(res))
+  //       .catch((err) => console.log(err));
+  //   });
+  // };
+  const [images, setImages] = useState([]);
+
+  const beginUpload = (tag) => {
+    const uploadOptions = {
+      cloudName: 'dcmlzd9bi',
+      tags: [tag],
+      uploadPreset: 'upload',
+    };
+
+    openUploadWidget(uploadOptions, (error, photos) => {
+      if (!error) {
+        console.log(photos);
+        if (photos.event === 'success') {
+          setImages([...images, photos.info.public_id]);
+          setFormData({ ...formData, image: photos.info.public_id });
+        }
+      } else {
+        console.log(error);
+      }
+    });
+  };
+  useEffect(() => {
+    fetchPhotos('image', setImages);
+  }, []);
 
   return (
     <Fragment>
@@ -41,7 +103,7 @@ const AddSneaker = ({ addSneaker, history }) => {
         onSubmit={(e) => {
           e.preventDefault();
           addSneaker(formData, history);
-          alert(`Selected file - ${fileInput.current.files[0].name}`);
+          // alert(`Selected file - ${fileInput.current.files[0].name}`);
         }}
       >
         <div className='form-group'>
@@ -115,19 +177,32 @@ const AddSneaker = ({ addSneaker, history }) => {
             onChange={(e) => onChange(e)}
           ></textarea>
         </div>
-        <div className='form-group'>
+        <CloudinaryContext cloudName='dcmlzd9bi'>
+          <div className='App'>
+            <button onClick={() => beginUpload('image')}>Upload Image</button>
+            <section>
+              {images.map((i) => (
+                <Image
+                  key={i}
+                  publicId={i}
+                  fetch-format='auto'
+                  quality='auto'
+                  value={image}
+                  onChange={(e) => onChange(e)}
+                  required
+                />
+              ))}
+            </section>
+          </div>
+        </CloudinaryContext>
+        {/* <div className='form-group'>
           <p>
             Add Image:{'   '}
-            <input
-              type='file'
-              ref={fileInput}
-              name='image'
-              value={image}
-              onChange={(e) => onChange(e)}
-              required
-            />
+         
           </p>
-        </div>
+          <ImageUpload files={files} onDrop={onDrop} />
+          <button onClick={() => upload()}>Upload</button>
+        </div> */}
         <input type='submit' className='btn btn-primary my-1' />
         <Link className='btn btn-light my-1' to='dashboard'>
           Go Back
