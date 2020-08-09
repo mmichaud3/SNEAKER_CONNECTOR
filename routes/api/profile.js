@@ -242,7 +242,7 @@ router.put(
       check('model', 'Model is required').not().isEmpty(),
       check('size', 'Size is required').not().isEmpty(),
       check('condition', 'Condition is required').not().isEmpty(),
-      // check('images', 'At least one image is required').not().isEmpty(),
+      check('image', 'At least one image is required').not().isEmpty(),
     ],
   ],
   async (req, res) => {

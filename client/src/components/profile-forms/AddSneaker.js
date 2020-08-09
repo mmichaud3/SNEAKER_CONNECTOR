@@ -177,24 +177,7 @@ const AddSneaker = ({ addSneaker, binaryStr, history }) => {
             onChange={(e) => onChange(e)}
           ></textarea>
         </div>
-        <CloudinaryContext cloudName='dcmlzd9bi'>
-          <div className='App'>
-            <button onClick={() => beginUpload('image')}>Upload Image</button>
-            <section>
-              {images.map((i) => (
-                <Image
-                  key={i}
-                  publicId={i}
-                  fetch-format='auto'
-                  quality='auto'
-                  value={image}
-                  onChange={(e) => onChange(e)}
-                  required
-                />
-              ))}
-            </section>
-          </div>
-        </CloudinaryContext>
+
         {/* <div className='form-group'>
           <p>
             Add Image:{'   '}
@@ -208,6 +191,23 @@ const AddSneaker = ({ addSneaker, binaryStr, history }) => {
           Go Back
         </Link>
       </form>
+      <CloudinaryContext cloudName='dcmlzd9bi'>
+        <div className='App'>
+          <button onClick={() => beginUpload('image')}>Upload Image</button>
+          <section required>
+            {images.map((i) => (
+              <Image
+                key={i}
+                publicId={i}
+                fetch-format='auto'
+                quality='auto'
+                value={image}
+                onChange={(e) => onChange(e)}
+              />
+            ))}
+          </section>
+        </div>
+      </CloudinaryContext>
     </Fragment>
   );
 };
