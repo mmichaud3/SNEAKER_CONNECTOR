@@ -58,7 +58,7 @@ const ProfileSneaker = ({
 );
 
 ProfileSneaker.propTypes = {
-  sneaker: PropTypes.array.isRequired,
+  sneaker: PropTypes.object.isRequired,
 };
 
 export default ProfileSneaker;

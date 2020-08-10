@@ -14,37 +14,35 @@ const ProfileSchema = new mongoose.Schema({
   bio: {
     type: String,
   },
-  sneaker: [
-    {
-      brand: {
-        type: String,
-        required: true,
-      },
-      model: {
-        type: String,
-        required: true,
-      },
-      size: {
-        type: String,
-        required: true,
-      },
-      condition: {
-        type: String,
-        required: true,
-      },
-      tradeAvailable: {
-        type: Boolean,
-        default: false,
-      },
-      description: {
-        type: String,
-      },
-      image: {
-        data: Buffer,
-        type: [],
-      },
+  sneaker: {
+    brand: {
+      type: String,
+      required: true,
     },
-  ],
+    model: {
+      type: String,
+      required: true,
+    },
+    size: {
+      type: String,
+      required: true,
+    },
+    condition: {
+      type: String,
+      required: true,
+    },
+    tradeAvailable: {
+      type: Boolean,
+      default: false,
+    },
+    description: {
+      type: String,
+    },
+    image: {
+      data: Buffer,
+      type: [],
+    },
+  },
 
   social: {
     youtube: {
