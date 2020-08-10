@@ -8,7 +8,7 @@ import { CloudinaryContext, Image } from 'cloudinary-react';
 import '../profile/profile.css';
 
 const Sneaker = ({ sneaker, deleteSneaker }) => {
-  const [images, setImages] = useState([]);
+  // const [images, setImages] = useState([]);
 
   const sneakers = sneaker.map((item) => (
     <tr key={item._id}>
@@ -17,6 +17,19 @@ const Sneaker = ({ sneaker, deleteSneaker }) => {
       <td>{item.size}</td>
       <td>{item.condition}</td>
       <td>
+        {item.image.map((i) => (
+          <CloudinaryContext cloudName='dcmlzd9bi'>
+            <Image
+              style={{ height: '5rem', width: '5rem' }}
+              publicId={i}
+            ></Image>
+          </CloudinaryContext>
+        ))}
+
+        {/* <CloudinaryContext cloudName='dcmlzd9bi'>
+            <Image publicId={item.image[0]}></Image>
+          </CloudinaryContext> */}
+
         {/* <CloudinaryContext cloudName='dcmlzd9bi'>
           <div className='App'>
             <section className='add-sneaker-image-continer'>
@@ -47,13 +60,13 @@ const Sneaker = ({ sneaker, deleteSneaker }) => {
       </td>
     </tr>
   ));
-  useEffect(() => {
-    setImages(
-      ...images,
-      sneaker.map((item) => item.image)
-    );
-    fetchPhotos('image', setImages);
-  }, []);
+  // useEffect(() => {
+  //   setImages(
+  //     ...images,
+  //     sneaker.map((item) => item.image)
+  //   );
+  //   // fetchPhotos('image', setImages);
+  // }, []);
 
   return (
     <Fragment>

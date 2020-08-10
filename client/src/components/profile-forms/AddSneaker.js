@@ -76,6 +76,7 @@ const AddSneaker = ({ addSneaker, binaryStr, history }) => {
       cloudName: 'dcmlzd9bi',
       tags: [tag],
       uploadPreset: 'upload',
+      cropping: true,
       maxFiles: 1,
       maxImageFileSize: 5000000,
     };

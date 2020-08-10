@@ -1,14 +1,34 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Card } from 'react-bootstrap';
+import { CloudinaryContext, Image } from 'cloudinary-react';
+
 import './profile.css';
 
 const ProfileSneaker = ({
-  sneaker: { brand, model, size, condition, tradeAvailable, description },
+  sneaker: {
+    brand,
+    model,
+    size,
+    condition,
+    tradeAvailable,
+    description,
+    image,
+  },
 }) => (
   <div>
     <Card>
-      <Card.Img className='image' variant='top' />
+      <div className='card-img-top'>
+        {' '}
+        <CloudinaryContext cloudName='dcmlzd9bi'>
+          <Image
+            className='profile-sneaker-image'
+            // style={{ height: '5rem', width: '5rem' }}
+            publicId={image[0]}
+          ></Image>
+        </CloudinaryContext>
+      </div>
+
       <Card.Body>
         <Card.Title className='title'>
           {brand} {model}

@@ -1,6 +1,7 @@
 .card {
   border: secondary;
   width: 18rem;
+  height: 30rem;
   -webkit-box-shadow: 0px 8px 10px 4px rgba(106, 105, 105, 0.44);
   -moz-box-shadow: 0px 8px 10px 4px rgba(106, 105, 105, 0.44);
   box-shadow: 0px 8px 10px 4px rgba(106, 105, 105, 0.44);
@@ -12,7 +13,13 @@
   font-family: 'Segoe Pro';
   font-weight: bold;
 }
-
+.card-img-top {
+  height: 15rem;
+  width: 100%;
+}
+.profile-sneaker-image {
+  height: 15rem;
+}
 .card-img-top:hover {
   transform: scale(1.1);
   transition: transform 6s cubic-bezier(0.25, 0.45, 0.45, 0.95);
@@ -20,6 +27,7 @@
 }
 .cardlist {
   padding-top: 20px;
+  height: 100vh;
 }
 .add-sneaker-image-continer {
   display: flex;
