@@ -2,11 +2,11 @@ import React, { Fragment, useState, useEffect } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import { CloudinaryContext, Image } from 'cloudinary-react';
 import axios from 'axios';
-import ImageUpload from '../image-upload/ImageUpload';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { addSneaker } from '../../actions/profile';
 import { fetchPhotos, openUploadWidget } from '../../CloudinaryService';
+import '../profile/profile.css';
 
 // const fileInput = React.createRef();
 
@@ -18,7 +18,7 @@ const AddSneaker = ({ addSneaker, binaryStr, history }) => {
     condition: '',
     tradeAvailable: false,
     description: '',
-    image: '',
+    image: [],
   });
 
   // const [files, setFiles] = useState([]);
@@ -76,6 +76,8 @@ const AddSneaker = ({ addSneaker, binaryStr, history }) => {
       cloudName: 'dcmlzd9bi',
       tags: [tag],
       uploadPreset: 'upload',
+      maxFiles: 1,
+      maxImageFileSize: 5000000,
     };
 
     openUploadWidget(uploadOptions, (error, photos) => {
@@ -83,7 +85,10 @@ const AddSneaker = ({ addSneaker, binaryStr, history }) => {
         console.log(photos);
         if (photos.event === 'success') {
           setImages([...images, photos.info.public_id]);
-          setFormData({ ...formData, image: photos.info.public_id });
+          setFormData({
+            ...formData,
+            image: image.concat(photos.info.public_id),
+          });
         }
       } else {
         console.log(error);
@@ -194,9 +199,10 @@ const AddSneaker = ({ addSneaker, binaryStr, history }) => {
       <CloudinaryContext cloudName='dcmlzd9bi'>
         <div className='App'>
           <button onClick={() => beginUpload('image')}>Upload Image</button>
-          <section required>
+          <section className='add-sneaker-image-continer' required>
             {images.map((i) => (
               <Image
+                className='add-sneaker-image'
                 key={i}
                 publicId={i}
                 fetch-format='auto'

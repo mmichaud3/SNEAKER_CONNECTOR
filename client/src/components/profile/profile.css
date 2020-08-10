@@ -21,3 +21,13 @@
 .cardlist {
   padding-top: 20px;
 }
+.add-sneaker-image-continer {
+  display: flex;
+  flex-direction: row;
+  height: 25rem;
+  width: 100%;
+}
+.add-sneaker-image {
+  height: 10rem;
+  width: 10rem;
+}

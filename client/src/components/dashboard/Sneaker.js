@@ -1,10 +1,15 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import Moment from 'react-moment';
 import { connect } from 'react-redux';
 import { deleteSneaker } from '../../actions/profile';
+import { fetchPhotos, openUploadWidget } from '../../CloudinaryService';
+import { CloudinaryContext, Image } from 'cloudinary-react';
+import '../profile/profile.css';
 
 const Sneaker = ({ sneaker, deleteSneaker }) => {
+  const [images, setImages] = useState([]);
+
   const sneakers = sneaker.map((item) => (
     <tr key={item._id}>
       <td>{item.brand}</td>
@@ -12,12 +17,24 @@ const Sneaker = ({ sneaker, deleteSneaker }) => {
       <td>{item.size}</td>
       <td>{item.condition}</td>
       <td>
-        {item.images}
-        {/* <Fragment>
-          <a target='_blank' href='{item.image}'>
-            <img className='profile-edu' src={item.image} alt='Sneakers' />
-          </a>
-        </Fragment> */}
+        {/* <CloudinaryContext cloudName='dcmlzd9bi'>
+          <div className='App'>
+            <section className='add-sneaker-image-continer'>
+              {images.map((i) => (
+                <Image
+                  className='add-sneaker-image'
+                  key={i}
+                  publicId={i}
+                  fetch-format='auto'
+                  quality='auto'
+                />
+              ))}
+            </section>
+          </div>
+        </CloudinaryContext> */}
+        {/* {item.image.map((photo) => (
+          <p>{photo}</p>
+        ))} */}
       </td>
 
       <td>
@@ -30,6 +47,14 @@ const Sneaker = ({ sneaker, deleteSneaker }) => {
       </td>
     </tr>
   ));
+  useEffect(() => {
+    setImages(
+      ...images,
+      sneaker.map((item) => item.image)
+    );
+    fetchPhotos('image', setImages);
+  }, []);
+
   return (
     <Fragment>
       <h2 className='my-2'>My Sneakers</h2>
