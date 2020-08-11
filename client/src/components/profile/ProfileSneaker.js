@@ -4,6 +4,7 @@ import { Card } from 'react-bootstrap';
 import { CloudinaryContext, Image } from 'cloudinary-react';
 
 import './profile.css';
+import { Link } from 'react-router-dom';
 
 const ProfileSneaker = ({
   sneaker: {
@@ -47,8 +48,19 @@ const ProfileSneaker = ({
         </p>
         <p>
           <strong>Available for trade: </strong>
-          {tradeAvailable === true ? 'Yes' : 'No'}
+          {tradeAvailable ? 'Yes' : 'No'}
         </p>
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'center',
+          }}
+        >
+          {tradeAvailable ? (
+            <Link to='/trading-floor'>Propose A Trade</Link>
+          ) : null}
+        </div>
       </Card.Body>
     </Card>
     {/* <h3 className='text-dark'>

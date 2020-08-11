@@ -13,6 +13,7 @@ import Posts from '../posts/Posts';
 import Post from '../post/Post';
 import NotFound from '../layout/NotFound';
 import PrivateRoute from '../routing/PrivateRoute';
+import TradingFloor from '../tradingFloor/TradingFloor';
 
 const Routes = () => {
   return (
@@ -29,6 +30,7 @@ const Routes = () => {
         <PrivateRoute exact path='/add-sneaker' component={AddSneaker} />
         <PrivateRoute exact path='/posts' component={Posts} />
         <PrivateRoute exact path='/posts/:id' component={Post} />
+        <PrivateRoute exact path='/trading-floor' component={TradingFloor} />
         <Route component={NotFound} />
       </Switch>
     </section>

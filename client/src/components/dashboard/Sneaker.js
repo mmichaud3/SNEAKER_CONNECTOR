@@ -25,29 +25,6 @@ const Sneaker = ({ sneaker, deleteSneaker }) => {
             ></Image>
           </CloudinaryContext>
         ))}
-
-        {/* <CloudinaryContext cloudName='dcmlzd9bi'>
-            <Image publicId={item.image[0]}></Image>
-          </CloudinaryContext> */}
-
-        {/* <CloudinaryContext cloudName='dcmlzd9bi'>
-          <div className='App'>
-            <section className='add-sneaker-image-continer'>
-              {images.map((i) => (
-                <Image
-                  className='add-sneaker-image'
-                  key={i}
-                  publicId={i}
-                  fetch-format='auto'
-                  quality='auto'
-                />
-              ))}
-            </section>
-          </div>
-        </CloudinaryContext> */}
-        {/* {item.image.map((photo) => (
-          <p>{photo}</p>
-        ))} */}
       </td>
 
       <td>
