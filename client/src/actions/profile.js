@@ -117,37 +117,6 @@ export const createProfile = (formData, history, edit = false) => async (
   }
 };
 
-// Add experience
-export const addExperience = (formData, history) => async (dispatch) => {
-  try {
-    const config = {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    };
-
-    const res = await axios.put('/api/profile/experience', formData, config);
-
-    dispatch({
-      type: UPDATE_PROFILE,
-      payload: res.data,
-    });
-
-    dispatch(setAlert('Experience Added', 'success'));
-  } catch (err) {
-    const errors = err.response.data.errors;
-
-    if (errors) {
-      errors.forEach((error) => dispatch(setAlert(error.msg, 'danger')));
-    }
-
-    dispatch({
-      type: PROFILE_ERROR,
-      payload: { msg: err.response.statusText, status: err.response.status },
-    });
-  }
-};
-
 // Add sneaker
 export const addSneaker = (formData, history) => async (dispatch) => {
   try {

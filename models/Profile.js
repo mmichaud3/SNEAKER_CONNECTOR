@@ -43,6 +43,10 @@ const ProfileSchema = new mongoose.Schema({
         data: Buffer,
         type: [],
       },
+      tradeOffered: {
+        type: Boolean,
+        default: false,
+      },
     },
   ],
 

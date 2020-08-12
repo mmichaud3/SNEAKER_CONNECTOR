@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -7,6 +7,8 @@ import Spinner from '../layout/Spinner';
 import { getCurrentProfile, deleteAccount } from '../../actions/profile';
 import { Container, Row, Col } from 'react-bootstrap';
 import ProfileSneaker from '../profile/ProfileSneaker';
+import SneakerThumbs from '../tradingFloor/sneakerThumbs/SneakerThumbs';
+import './tradingFloor.css';
 
 const TradingFloor = ({
   getCurrentProfile,
@@ -17,35 +19,58 @@ const TradingFloor = ({
   useEffect(() => {
     getCurrentProfile();
   }, [getCurrentProfile]);
+
+  const [isTrade, setTrade] = useState(false);
+
+  const trade = () => {
+    setTrade(true);
+  };
   return loading && profile === null ? (
     <Spinner />
   ) : (
     <Fragment>
-      <h1 style={{ color: '#17a2b8' }}>Dashboard</h1>
+      <h1 style={{ color: '#17a2b8' }}>Trading Floor</h1>
       <p className='lead'>
         <i className='fas fa-user'></i> Welcome {user && user.name}
       </p>
       {profile !== null ? (
-        <Fragment>
-          <Row>
-            {profile.sneaker.map((sneaker) => (
-              <Col xs={12} sm={6} md={6} lg={4} className='mt-4'>
-                <ProfileSneaker key={sneaker._id} sneaker={sneaker} />
-              </Col>
-            ))}
-          </Row>
-        </Fragment>
-      ) : (
         // <Fragment>
-        //   <DashboardActions />
-        //   <Sneaker sneaker={profile.sneaker} />
-
-        //   <div className='my-2'>
-        //     <button className='btn btn-danger' onClick={() => deleteAccount()}>
-        //       <i className='fas fa-user-minus'> Delete My Account</i>
-        //     </button>
-        //   </div>
+        //   <Row>
+        //     {profile.sneaker.map((sneaker) => (
+        //       <Col xs={12} sm={6} md={6} lg={4} className='mt-4'>
+        //         <ProfileSneaker key={sneaker._id} sneaker={sneaker} />
+        //       </Col>
+        //     ))}
+        //   </Row>
         // </Fragment>
+        <Container className='trading-floor-page' fluid>
+          <Row>
+            <Col>
+              <div className='trading-floor-my-items-container'>
+                {profile.sneaker.map((sneaker) =>
+                  sneaker.tradeAvailable ? (
+                    <div className='trading-floor-sneakerThumb'>
+                      <SneakerThumbs
+                        key={sneaker._id}
+                        sneaker={sneaker}
+                        trade={trade}
+                      />
+                    </div>
+                  ) : null
+                )}
+              </div>
+            </Col>
+            <Col>
+              <div className='trading-floor-proposed-items-container'>
+                {isTrade ? <p>trade</p> : null}
+              </div>
+            </Col>
+            <Col>
+              <div className='trading-floor-wanted-item-container'></div>
+            </Col>
+          </Row>
+        </Container>
+      ) : (
         <Fragment>
           <p>You have not yet set up a profile, please add some info</p>
           <Link to='/create-profile' className='btn btn-primary my-1'>

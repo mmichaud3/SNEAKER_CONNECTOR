@@ -4,9 +4,12 @@
 }
 
 .trading-floor-my-items-container {
+  display: flex;
+  flex-direction: column;
   height: 100vw;
   width: 100%;
   background-color: #d6d4d4;
+  padding: 0.5vw;
 }
 
 .trading-floor-proposed-items-container {
@@ -18,4 +21,10 @@
   height: 100vw;
   width: 100%;
   background-color: #d6d4d4;
+}
+.trading-floor-sneakerThumb {
+  /* display: flex;
+  flex-direction: column; */
+  height: 23vw;
+  width: 100%;
 }

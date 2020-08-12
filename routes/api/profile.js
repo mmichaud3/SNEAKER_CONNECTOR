@@ -259,6 +259,7 @@ router.put(
       description,
       tradeAvailable,
       image,
+      tradeOffered,
     } = req.body;
 
     const newSnk = {
@@ -269,6 +270,7 @@ router.put(
       tradeAvailable,
       description,
       image,
+      tradeOffered,
     };
 
     try {
